@@ -8,49 +8,49 @@
 
 -- Selecting used dataset
 
---Select location,date,total_cases,new_cases,total_deaths,population
---From SQLProject..CovidDeaths
---Order by 1,2
+Select location,date,total_cases,new_cases,total_deaths,population
+From SQLProject..CovidDeaths
+Order by 1,2
 
 -- See total_cases vs total_deaths 
 -- Shows likelihood of dying, if you contract Covid in your country
 
---Select location,date,total_cases,total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
---From SQLProject..CovidDeaths
---Where location like '%states%'
---Order by 1,2
+Select location,date,total_cases,total_deaths, (total_deaths/total_cases)*100 as DeathPercentage
+From SQLProject..CovidDeaths
+Where location like '%states%'
+Order by 1,2
 
 -- See total_cases vs population
 -- Shows what percentage of the population has gotten covid
 
---Select location, date, population, total_cases, (total_cases/population)*100 as AffectedPercentage
---From SQLProject..CovidDeaths
---Where location like '%states%'
---Order by 1,2
+Select location, date, population, total_cases, (total_cases/population)*100 as AffectedPercentage
+From SQLProject..CovidDeaths
+Where location like '%states%'
+Order by 1,2
 
 -- Shows the highest infection rate according to population
 
---Select location, population, Max(total_cases) as HighestInfectionCount, Max(total_cases/population)*100 as AffectedPercentage
---From SQLProject..CovidDeaths
-----Where location like '%states%'
---Group by location, population
---Order by AffectedPercentage desc
+Select location, population, Max(total_cases) as HighestInfectionCount, Max(total_cases/population)*100 as AffectedPercentage
+From SQLProject..CovidDeaths
+Where location like '%states%'
+Group by location, population
+Order by AffectedPercentage desc
 
 -- Select Countries where the death count is the highest
 
---Select location, Max(cast(total_deaths as int)) as HighestDeathCount
---From SQLProject..CovidDeaths
---Where continent is not null
---Group by location
---Order by HighestDeathCount desc
+Select location, Max(cast(total_deaths as int)) as HighestDeathCount
+From SQLProject..CovidDeaths
+Where continent is not null
+Group by location
+Order by HighestDeathCount desc
 
 -- Select highest deaths by continent
 
---Select location, Max(cast(total_deaths as int)) as HighestDeathCount
---From SQLProject..CovidDeaths
---Where continent is null
---Group by location
---Order by HighestDeathCount desc
+Select location, Max(cast(total_deaths as int)) as HighestDeathCount
+From SQLProject..CovidDeaths
+Where continent is null
+Group by location
+Order by HighestDeathCount desc
 
 -- Not correct version
 
