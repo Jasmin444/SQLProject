@@ -1,4 +1,4 @@
---Select * 
+ --Select * 
 --From SQLProject..CovidDeaths
 --Order By 3,4
 
@@ -145,7 +145,9 @@ From #PercentagePeopleVaccinated
 
 -- View
 
-Create View PercentagePeopleVaccinated as
+
+
+Create View  PercentagePopulationVaccinated as
 Select dt.continent, dt.location, dt.date, dt.population, vac.new_vaccinations, Sum(Convert(int, new_vaccinations)) over(Partition by dt.location Order by dt.location, dt.date) as TotalVaccinatedPeople 
 From SQLProject..CovidDeaths dt
 Join SQLProject..CovidVaccinations vac
@@ -154,8 +156,10 @@ and dt.date = vac.date
 Where dt.continent is not null
 --Order By 2,3
 
+Drop View if exists PercentagePeopleVaccinated
+
 Select *
-From PercentagePeopleVaccinated
+From PercentagePopulationVaccinated
 
 
 
